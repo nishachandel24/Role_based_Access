@@ -66,17 +66,17 @@ export default function LeftPanel() {
         </div>
 
         {/* Heading */}
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-3xl font-extrabold leading-tight text-white drop-shadow-md lg:text-[2.5rem]">
-            Transforming Waste Into
-            <span className="block text-emerald-200"> Sustainable Value</span>
+        <div className="relative z-10 px-4 text-center">
+          <h1 className="text-3xl font-bold leading-tight text-white lg:text-5xl">
+            Sustainable Waste
+            <span className="mt-2 block text-emerald-100">Management</span>
           </h1>
           <p
-            className="mx-auto mt-3 max-w-sm text-base leading-relaxed lg:text-[1.05rem]"
+            className="mx-auto mt-4 max-w-md text-base leading-relaxed lg:text-lg"
             style={{ color: "rgba(255,255,255,0.82)" }}
           >
-            Empowering the circular economy through intelligent resource
-            management.
+            Track operations, recycling, and performance in one simple
+            dashboard.
           </p>
         </div>
 

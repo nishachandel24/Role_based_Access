@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '../components/layout/MainLayout';
 import ProtectedRoute from '../components/layout/ProtectedRoute';
 import Loader from '../components/common/Loader';
+import { getDefaultRouteForRole, isKnownRole } from '../utils/roles';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const ForgotPassword = lazy(() => import('../pages/ForgotPassword'));
@@ -13,6 +14,37 @@ const RecyclingMetricsPage = lazy(() => import('../pages/RecyclingMetricsPage'))
 const FleetMonitoring = lazy(() => import('../pages/FleetMonitoring'));
 const WasteAnalytics = lazy(() => import('../pages/WasteAnalytics'));
 
+const getStoredRole = () => {
+  const storedUser = localStorage.getItem('user');
+  const fallbackRole = localStorage.getItem('role');
+
+  if (!storedUser && !fallbackRole) return null;
+
+  try {
+    const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+    return parsedUser?.role || fallbackRole;
+  } catch {
+    return fallbackRole;
+  }
+};
+
+const AccessDeniedPage = () => {
+  const role = getStoredRole();
+  const destination = isKnownRole(role) ? getDefaultRouteForRole(role) : '/login';
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold text-red-600 mb-4">Access Denied</h1>
+        <p className="text-gray-600 mb-6">You don't have permission to access this page.</p>
+        <a href={destination} className="inline-block px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          Go to Home
+        </a>
+      </div>
+    </div>
+  );
+};
+
 const AppRouter = () => {
   return (
     <Suspense fallback={<Loader message="Loading page..." />}>
@@ -20,17 +52,7 @@ const AppRouter = () => {
         {/* Public Routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/access-denied" element={
-          <div className="flex items-center justify-center min-h-screen bg-gray-50">
-            <div className="text-center">
-              <h1 className="text-3xl font-bold text-red-600 mb-4">Access Denied</h1>
-              <p className="text-gray-600 mb-6">You don't have permission to access this page.</p>
-              <a href="/" className="inline-block px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-                Go to Dashboard
-              </a>
-            </div>
-          </div>
-        } />
+        <Route path="/access-denied" element={<AccessDeniedPage />} />
 
         {/* Protected Routes */}
         <Route 

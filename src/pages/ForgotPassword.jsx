@@ -48,7 +48,7 @@ export default function ForgotPassword() {
 
   return (
     <div
-      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-white px-3 py-4 text-gray-800 sm:px-4 lg:h-[100svh]"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-x-hidden overflow-y-auto bg-white px-3 py-4 text-gray-800 sm:px-4 lg:min-h-screen"
       style={{
         backgroundImage: `linear-gradient(135deg, #ecfdf5 0%, #d1fae5 36%, #a7f3d0 68%, #6ee7b7 100%)`,
         backgroundSize: "400% 400%",
@@ -98,7 +98,7 @@ export default function ForgotPassword() {
       />
 
       <div
-        className="relative z-10 mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-white/70 bg-white/95 p-0 shadow-2xl backdrop-blur-xl md:rounded-3xl lg:max-h-[calc(100svh-2rem)]"
+        className="relative z-10 mx-auto w-full max-w-md overflow-visible rounded-2xl border border-white/70 bg-white/95 p-0 shadow-2xl backdrop-blur-xl md:rounded-3xl"
         style={{ animation: "cardReveal 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) 1" }}
       >
         {/* Company Header */}

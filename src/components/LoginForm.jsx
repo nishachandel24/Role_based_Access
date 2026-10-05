@@ -107,80 +107,62 @@ export default function LoginForm() {
   
   
   return (
-    <div className="flex w-full items-start justify-center bg-gray-100 px-3 pb-6 pt-3 md:px-4 md:pt-4 lg:h-svh lg:w-1/2 lg:items-center lg:px-6 lg:py-6">
-      <div className="w-full max-w-md rounded-[28px] bg-white px-4 py-5 shadow-xl md:px-6 md:py-7 lg:max-h-[calc(100svh-3rem)] lg:px-7 lg:py-6">
-
-        {/* Card Header */}
-        <div className="mb-5 text-center md:mb-6">
-          <h2 className="text-xl md:text-2xl font-extrabold text-gray-800">Welcome Back</h2>
-          <p className="text-green-600 text-xs md:text-sm mt-1 font-medium">
+    <div className="flex w-full items-start justify-center bg-gray-100 px-3 pb-6 pt-3 md:px-4 md:pt-4 lg:w-1/2 lg:items-center lg:px-6 lg:py-6">
+      <div className="w-full max-w-[480px] rounded-[30px] border border-slate-200/80 bg-white/90 px-4 py-5 shadow-[0_25px_80px_rgba(15,118,110,0.12)] backdrop-blur-sm md:px-6 md:py-7 lg:px-7 lg:py-6">
+        <div className="mb-6 text-center">
+          <h2 className="text-2xl font-black tracking-tight text-slate-800 md:text-[2.2rem]">Welcome Back</h2>
+          <p className="mt-2 text-sm font-medium text-emerald-600 md:text-base">
             Please enter your details to sign in
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3.5 md:gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:gap-4.5">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-semibold text-slate-700 md:text-base">Full Name</label>
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 transition-all focus-within:border-emerald-500 focus-within:bg-white focus-within:ring-4 focus-within:ring-emerald-100 md:px-4 md:py-3.5">
+              <FaUser className="text-base text-slate-400 md:text-lg" />
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Enter your full name"
+                pattern="[A-Z][a-zA-Z\s]*"
+                title="Name must start with a capital letter"
+                className="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none md:text-base"
+                required
+              />
+            </div>
+            {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
+          </div>
 
-          {/* Full Name */}
-<div className="flex flex-col gap-1">
-  <label className="text-xs md:text-sm font-bold text-gray-800">
-    Full Name
-  </label>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-semibold text-slate-700 md:text-base">Email Address</label>
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 transition-all focus-within:border-emerald-500 focus-within:bg-white focus-within:ring-4 focus-within:ring-emerald-100 md:px-4 md:py-3.5">
+              <FaUser className="text-base text-slate-400 md:text-lg" />
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                title="Enter a valid email address"
+                className="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none md:text-base"
+                required
+              />
+            </div>
+            {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
+          </div>
 
-  <div className="flex items-center gap-2 border border-gray-200 rounded-lg bg-white px-3 py-2.5 transition-all focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-100 md:gap-3 md:rounded-xl md:px-4 md:py-3">
-    <FaUser className="text-gray-400 text-sm md:text-base shrink-0" />
-
-    <input
-      type="text"
-      name="name"
-      value={form.name}
-      onChange={handleChange}
-      placeholder="Enter your full name"
-      pattern="[A-Z][a-zA-Z\s]*"
-      title="Name must start with a capital letter"
-      className="flex-1 bg-transparent text-xs md:text-sm text-gray-800 placeholder-gray-400 outline-none"
-     required
-    />
-  </div>
-  {errors.name && (
-    <p className="text-red-500 text-xs mt-1">{errors.name}</p>
-  )}
-</div>
-
-          {/* Username or Email */}
-<div className="flex flex-col gap-1">
-  <label className="text-xs md:text-sm font-bold text-gray-800">
-    Email Address
-  </label>
-
-  <div className="flex items-center gap-2 border border-gray-200 rounded-lg bg-white px-3 py-2.5 transition-all focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-100 md:gap-3 md:rounded-xl md:px-4 md:py-3">
-    <FaUser className="text-gray-400 text-sm md:text-base shrink-0" />
-
-    <input
-      type="email"
-      name="email"
-      value={form.email}
-      onChange={handleChange}
-      placeholder="Enter your email"
-      title="Enter a valid email address"
-      className="flex-1 bg-transparent text-xs md:text-sm text-gray-800 placeholder-gray-400 outline-none"
-      required
-    />
-  </div>
-  {errors.email && (
-    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-  )}
-</div>
-
-          {/* Select Role */}
-          <div className="flex flex-col gap-1">
-            <label className="text-xs md:text-sm font-bold text-gray-800">Select Role</label>
-            <div className="flex items-center gap-2 border border-gray-200 rounded-lg bg-white px-3 py-2.5 transition-all focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-100 md:gap-3 md:rounded-xl md:px-4 md:py-3">
-              <FaBriefcase className="text-gray-400 text-sm md:text-base shrink-0" />
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-semibold text-slate-700 md:text-base">Select Role</label>
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 transition-all focus-within:border-emerald-500 focus-within:bg-white focus-within:ring-4 focus-within:ring-emerald-100 md:px-4 md:py-3.5">
+              <FaBriefcase className="text-base text-slate-400 md:text-lg" />
               <select
                 name="role"
                 value={form.role}
                 onChange={handleChange}
-                className="flex-1 bg-transparent text-xs md:text-sm text-gray-800 outline-none appearance-none cursor-pointer"
+                className="w-full appearance-none bg-transparent text-sm text-slate-800 focus:outline-none md:text-base"
                 required
               >
                 {roles.map((r) => (
@@ -189,79 +171,54 @@ export default function LoginForm() {
                   </option>
                 ))}
               </select>
-              <svg
-                className="text-gray-400 w-4 h-4 shrink-0 pointer-events-none"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
+              <svg className="h-4 w-4 shrink-0 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </div>
           </div>
 
-          {/* Password */}
-          <div className="flex flex-col gap-1">
-            <label className="text-xs md:text-sm font-bold text-gray-800">Password</label>
-            <div className="flex items-center gap-2 border border-gray-200 rounded-lg bg-white px-3 py-2.5 transition-all focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-100 md:gap-3 md:rounded-xl md:px-4 md:py-3">
-              <MdLock className="text-gray-400 text-sm md:text-base shrink-0" />
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-semibold text-slate-700 md:text-base">Password</label>
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 transition-all focus-within:border-emerald-500 focus-within:bg-white focus-within:ring-4 focus-within:ring-emerald-100 md:px-4 md:py-3.5">
+              <MdLock className="text-base text-slate-400 md:text-lg" />
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={form.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="flex-1 bg-transparent text-xs md:text-sm text-gray-800 placeholder-gray-400 outline-none"
+                className="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none md:text-base"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((v) => !v)}
-                className="text-gray-400 hover:text-green-600 transition-colors text-xs font-medium shrink-0"
+                className="shrink-0 text-xs font-semibold text-slate-500 transition-colors hover:text-emerald-600 md:text-sm"
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-            {errors.password && (
-              <p className="text-red-500 text-xs mt-1">{errors.password}</p>
-            )}
-            {/* Forgot Password */}
+            {errors.password && <p className="text-xs text-red-500">{errors.password}</p>}
+
             <div className="mt-1 flex justify-end">
               <button
                 type="button"
                 onClick={handleForgotPassword}
-                className="text-xs md:text-sm text-green-600 font-semibold hover:text-green-700 hover:underline transition-colors"
+                className="text-sm font-semibold text-emerald-600 transition-colors hover:text-emerald-700 hover:underline md:text-base"
               >
                 Forgot Password
               </button>
             </div>
           </div>
 
-          {/* Sign In Button */}
           <button
             type="submit"
-            className="mt-1 flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 py-2.5 text-sm font-bold text-white shadow-md shadow-green-200 transition-colors hover:bg-green-700 active:bg-green-800 md:rounded-xl md:py-3 md:text-base"
+            className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-green-500 py-3.5 text-base font-bold text-white shadow-[0_14px_30px_rgba(16,185,129,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:from-emerald-700 hover:to-green-600 active:translate-y-0 md:py-4 md:text-lg"
           >
             Sign In
-            <FiArrowRight className="text-base md:text-lg" />
+            <FiArrowRight className="text-lg" />
           </button>
         </form>
-
-        {/* Footer */}
-        <p className="mt-4 text-center text-xs text-gray-500 md:mt-5 md:text-sm">
-          Don&apos;t have an account?{" "}
-          <a
-            href="#"
-            className="text-green-600 font-bold hover:text-green-700 hover:underline transition-colors"
-          >
-            Request access
-          </a>
-        </p>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const features = [
 export default function LeftPanel() {
   return (
     <div
-      className="relative flex w-full flex-col overflow-hidden eco-animate-bg lg:h-[100svh] lg:w-1/2"
+      className="relative flex w-full flex-col overflow-visible eco-animate-bg lg:min-h-screen lg:w-1/2"
       style={{ background: "linear-gradient(140deg, #14532d 0%, #166534 46%, #0f766e 100%)" }}
     >
       {/* Decorative circles */}
